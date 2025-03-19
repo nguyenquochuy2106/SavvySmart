@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview | SavvySave</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        *{margin:0;padding:0;border-width:0;border-style:solid;box-sizing:border-box;border-color:var(--x-default-border-color,#E5E7EB)}
+        .mt-5{margin-top:5px}
+        .p-4{padding:4px}
+        .text-center{text-align:center}
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div id="navbar"></div>
+
+    <div class="container-custom mt-5">
+        <div class="card card-custom p-4">
+            <h2 class="text-center">Spending Overview</h2>
+            <canvas id="spendingChart"></canvas>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/overview.js"></script>
+</body>
+</html>
