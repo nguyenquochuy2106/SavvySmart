@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SavvySave - Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<style>
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-color: #f5f6fa;
+    --card-color: #ffffff;
+    --text-color: #2d3436;
+    --sidebar-width: 250px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: var(--sidebar-width);
+    /* background: var(--primary-color); */
+    background: linear-gradient(90deg, #00ff2e, #00d4ff);
+    color: #000;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-links {
+    list-style: none;
+    margin-top: 30px;
+}
+
+.nav-links li {
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.nav-links li:hover {
+    background: rgba(255,255,255,0.1);
+    border-radius: 5px;
+}
+
+/* Main Content Styles */
+.main-content {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: var(--card-color);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: var(--background-color);
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: var(--card-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.chart-card {
+    grid-column: span 2;
+}
+
+.transactions {
+    grid-column: span 3;
+}
+
+/* Transaction List Styles */
+.transaction-list {
+    margin-top: 20px;
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.transaction-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.transaction-info {
+    flex: 1;
+}
+
+.amount {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.trend {
+    font-size: 14px;
+}
+
+.trend.positive {
+    color: #2ecc71;
+}
+
+.trend.negative {
+    color: #e74c3c;
+}
+</style>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="../img/wallet.png" alt="SavvySave" width="50" height="50">
+                <h2>Savvy</h2><h2 style="color:#ffffff">Save</h2>
+            </div>
+            <ul class="nav-links">
+                <li data-page="dashboard" class="active"><i class="fas fa-home" ></i> Dashboard</li>
+                <li data-page="transactions"><i class="fas fa-exchange-alt"></i> Transactions</li>
+                <li data-page="analytics"><i class="fas fa-chart-pie"></i> Analytics</li>
+                <li data-page="budget"><i class="fas fa-wallet"></i> Budget</li>
+                <li data-page="settings"><i class="fas fa-cog"></i> Settings</li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="user-info">
+                    <i class="fas fa-bell"></i>
+                    <img src="../img/ronaldo_icon.jpg" alt="User Avatar" class="avatar">
+                    <span>John Doe</span>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-grid">
+                <!-- Summary Cards -->
+                <div class="card income">
+                    <h3>Total Income</h3>
+                    <p class="amount">$5,240</p>
+                    <span class="trend positive">+12.5%</span>
+                </div>
+                <div class="card expenses">
+                    <h3>Total Expenses</h3>
+                    <p class="amount">$3,120</p>
+                    <span class="trend negative">-5.2%</span>
+                </div>
+                <div class="card savings">
+                    <h3>Total Savings</h3>
+                    <p class="amount">$2,120</p>
+                    <span class="trend positive">+8.3%</span>
+                </div>
+
+                <!-- Charts -->
+                <div class="card chart-card">
+                    <h3>Monthly Overview</h3>
+                    <canvas id="monthlyChart"></canvas>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="card transactions">
+                    <h3>Recent Transactions</h3>
+                    <div class="transaction-list">
+                        <div class="transaction-item">
+                            <div class="transaction-icon shopping">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="transaction-info">
+                                <h4>Shopping</h4>
+                                <p>Grocery Store</p>
+                            </div>
+                            <div class="transaction-amount negative">
+                                -$85.20
+                            </div>
+                        </div>
+                        <!-- Add more transaction items -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
