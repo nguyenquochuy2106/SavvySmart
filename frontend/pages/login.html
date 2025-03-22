@@ -6,6 +6,7 @@
     <title>SavvySave - Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/face-auth.css">
 </head>
 <body>
     <div class="container">
@@ -15,6 +16,29 @@
                 <h2>Welcome to <span>Savvy<b>Save</b></span></h2>
                 <p class="subtitle">Please login to continue</p>
                 
+                <div class="face-auth-container">
+                    <div class="face-auth-circle" onclick="startFaceAuth(event)">
+                        <!-- Avatar mặc định -->
+                        <img src="../img/avt_3d.png" alt="Click to start Face ID" class="default-avatar" id="defaultAvatar">
+                        
+                        <!-- Camera preview -->
+                        <div class="camera-preview" id="cameraPreview">
+                            <video id="faceVideo" autoplay playsinline></video>
+                        </div>
+                        
+                        <!-- Nút Face ID -->
+                        <!-- <button class="face-auth-btn" id="faceAuthBtn" onclick="authenticateWithFace('login')">
+                            <i class="fas fa-camera"></i>
+                            <span>Login with Face ID</span>
+                        </button> -->
+                    </div>
+                    <p class="face-auth-text">Click on avatar to login with Face ID</p>
+                </div>
+
+                <div class="divider">
+                    <span>or login with email</span>
+                </div>
+
                 <form>
                     <div class="form-group">
                         <i class="fas fa-envelope"></i>
@@ -63,6 +87,23 @@
                 <h2>Create Account</h2>
                 <p class="subtitle">Start your financial journey with us</p>
                 
+                <div class="face-auth-container">
+                    <div class="face-auth-circle" onclick="startFaceAuth(event, 'signup')">
+                        <!-- Avatar mặc định -->
+                        <img src="../img/avt_3d.png" alt="Click to start Face ID" class="default-avatar" id="signupDefaultAvatar">
+                        
+                        <!-- Camera preview -->
+                        <div class="camera-preview" id="signupCameraPreview">
+                            <video id="faceVideoSignup" autoplay playsinline></video>
+                        </div>
+                    </div>
+                    <p class="face-auth-text">Click on avatar to register Face ID</p>
+                </div>
+
+                <div class="divider">
+                    <span>or register with email</span>
+                </div>
+
                 <form>
                     <div class="form-group">
                         <i class="fas fa-user"></i>
@@ -101,11 +142,32 @@
         </div>
     </div>
 
-
+    <script src="../js/face-auth.js"></script>
     <script>
+        // Đảm bảo FaceAuthHandler được khởi tạo sau khi DOM loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            window.faceAuth = new FaceAuthHandler();
+        });
+
+        function startFaceAuth(event, mode = 'login') {
+            if (window.faceAuth) {
+                window.faceAuth.startCamera(event, mode);
+            } else {
+                console.error('FaceAuthHandler not initialized');
+            }
+        }
+
+        function authenticateWithFace(mode) {
+            faceAuth.authenticateWithFace(mode);
+        }
+
+        // Thêm vào hàm toggleForm
         function toggleForm(formType) {
             const loginForm = document.getElementById('loginForm');
             const signupForm = document.getElementById('signupForm');
+
+            // Dừng camera khi chuyển form
+            faceAuth.stopCamera();
 
             if (formType === 'signup') {
                 loginForm.classList.add('hidden');
@@ -130,6 +192,11 @@
                     this.classList.add('fa-eye-slash');
                 }
             });
+        });
+
+        // Stop camera when navigating aways
+        window.addEventListener('beforeunload', () => {
+            faceAuth.stopCamera();
         });
     </script>
 </body>
