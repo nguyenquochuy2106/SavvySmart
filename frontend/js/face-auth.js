@@ -112,3 +112,22 @@ function startFaceAuth(event) {
 window.addEventListener('beforeunload', () => {
     faceAuth.stopCamera();
 });
+
+// Update toggleForm function
+function toggleForm(formType) {
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    
+    // Stop any active camera
+    if (window.faceAuth) {
+        window.faceAuth.stopCamera();
+    }
+
+    if (formType === 'signup') {
+        loginForm.classList.add('hidden');
+        signupForm.classList.remove('hidden');
+    } else {
+        signupForm.classList.add('hidden');
+        loginForm.classList.remove('hidden');
+    }
+}

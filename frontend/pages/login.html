@@ -16,27 +16,11 @@
                 <h2>Welcome to <span>Savvy<b>Save</b></span></h2>
                 <p class="subtitle">Please login to continue</p>
                 
+                <!-- Giữ lại avatar circle -->
                 <div class="face-auth-container">
-                    <div class="face-auth-circle" onclick="startFaceAuth(event)">
-                        <!-- Avatar mặc định -->
-                        <img src="../img/avt_3d.png" alt="Click to start Face ID" class="default-avatar" id="defaultAvatar">
-                        
-                        <!-- Camera preview -->
-                        <div class="camera-preview" id="cameraPreview">
-                            <video id="faceVideo" autoplay playsinline></video>
-                        </div>
-                        
-                        <!-- Nút Face ID -->
-                        <!-- <button class="face-auth-btn" id="faceAuthBtn" onclick="authenticateWithFace('login')">
-                            <i class="fas fa-camera"></i>
-                            <span>Login with Face ID</span>
-                        </button> -->
+                    <div class="face-auth-circle">
+                        <img src="../img/wallet.png" alt="Avatar" class="default-avatar" id="defaultAvatar">
                     </div>
-                    <p class="face-auth-text">Click on avatar to login with Face ID</p>
-                </div>
-
-                <div class="divider">
-                    <span>or login with email</span>
                 </div>
 
                 <form>
@@ -58,20 +42,10 @@
                         <a href="#" class="forgot-password">Forgot Password?</a>
                     </div>
 
-                    <button type="submit" class="btn-primary">Log In</button>
-                    
-                    <div class="divider">
-                        <span>or continue with</span>
-                    </div>
-                    
-                    <div class="social-login">
-                        <button type="button" class="btn-social google">
-                            <i class="fab fa-google"></i>
-                            <span>Google</span>
-                        </button>
-                        <button type="button" class="btn-social facebook">
-                            <i class="fab fa-facebook-f"></i>
-                            <span>Facebook</span>
+                    <div class="login-buttons">
+                        <button type="submit" class="btn-primary">Log In</button>
+                        <button type="button" class="btn-face-id" onclick="startFaceAuth(event)">
+                            <i class="fas fa-camera"></i>
                         </button>
                     </div>
 
@@ -87,21 +61,11 @@
                 <h2>Create Account</h2>
                 <p class="subtitle">Start your financial journey with us</p>
                 
+                <!-- Avatar circle -->
                 <div class="face-auth-container">
-                    <div class="face-auth-circle" onclick="startFaceAuth(event, 'signup')">
-                        <!-- Avatar mặc định -->
-                        <img src="../img/avt_3d.png" alt="Click to start Face ID" class="default-avatar" id="signupDefaultAvatar">
-                        
-                        <!-- Camera preview -->
-                        <div class="camera-preview" id="signupCameraPreview">
-                            <video id="faceVideoSignup" autoplay playsinline></video>
-                        </div>
+                    <div class="face-auth-circle">
+                        <img src="../img/wallet.png" alt="Avatar" class="default-avatar" id="signupDefaultAvatar">
                     </div>
-                    <p class="face-auth-text">Click on avatar to register Face ID</p>
-                </div>
-
-                <div class="divider">
-                    <span>or register with email</span>
                 </div>
 
                 <form>
@@ -131,7 +95,12 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="btn-primary">Create Account</button>
+                    <div class="login-buttons">
+                        <button type="submit" class="btn-primary">Create Account</button>
+                        <button type="button" class="btn-face-id" onclick="startFaceAuth(event, 'signup')">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
 
                     <p class="switch-form">
                         Already have an account? 
@@ -166,8 +135,10 @@
             const loginForm = document.getElementById('loginForm');
             const signupForm = document.getElementById('signupForm');
 
-            // Dừng camera khi chuyển form
-            faceAuth.stopCamera();
+            // Dừng camera nếu đang active
+            if (window.faceAuth) {
+                window.faceAuth.stopCamera();
+            }
 
             if (formType === 'signup') {
                 loginForm.classList.add('hidden');
