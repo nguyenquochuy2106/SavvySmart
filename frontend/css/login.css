@@ -236,7 +236,7 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: #00b894;
+            background: linear-gradient(135deg, #00ff2e, #00d4ff);
             border: none;
             color: white;
             cursor: pointer;
