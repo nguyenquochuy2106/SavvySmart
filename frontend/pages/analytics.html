@@ -1,0 +1,64 @@
+<!-- Thêm vào phần đầu file -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="../css/analytics.css">
+<div class="analytics-container">
+    <header class="section-header">
+        <h2>Financial Analytics</h2>
+        <div class="period-selector">
+            <button class="period-btn active" data-period="month">Month</button>
+            <button class="period-btn" data-period="quarter">Quarter</button>
+            <button class="period-btn" data-period="year">Year</button>
+        </div>
+    </header>
+
+    <div class="analytics-grid">
+        <!-- Tổng quan tài chính -->
+        <div class="card summary-card">
+            <div class="summary-item">
+                <h3>Total Income</h3>
+                <p class="amount positive">$12,500</p>
+                <span class="trend positive">+15.2%</span>
+            </div>
+            <div class="summary-item">
+                <h3>Total Expenses</h3>
+                <p class="amount negative">$8,300</p>
+                <span class="trend negative">-8.5%</span>
+            </div>
+            <div class="summary-item">
+                <h3>Net Savings</h3>
+                <p class="amount">$4,200</p>
+                <span class="trend positive">+23.7%</span>
+            </div>
+        </div>
+
+        <!-- Biểu đồ chi tiêu theo danh mục -->
+        <div class="card chart-card pie-chart-container">
+            <h3>Expenses by Category</h3>
+            <canvas id="categoryPieChart"></canvas>
+        </div>
+
+        <!-- Biểu đồ xu hướng thu chi -->
+        <div class="card chart-card">
+            <h3>Income vs Expenses Trend</h3>
+            <canvas id="trendLineChart"></canvas>
+        </div>
+
+        <!-- Chi tiêu top danh mục -->
+        <div class="card top-spending">
+            <h3>Top Spending Categories</h3>
+            <div class="category-list">
+                <div class="category-item">
+                    <div class="category-info">
+                        <span class="category-name">Shopping</span>
+                        <span class="category-amount">$2,500</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <!-- More categories will be added dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/analytics.js"></script>

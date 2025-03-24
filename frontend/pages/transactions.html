@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SavvySave - Transactions</title>
+    <link rel="stylesheet" href="../css/transactions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar giống dashboard.html -->
+        
+        <main class="main-content" id="transactions-margin">
+            <header class="section-header">
+                <h2>Transactions</h2>
+                <button class="btn-add" onclick="openTransactionModal()">
+                    <i class="fas fa-plus"></i> New Transaction
+                </button>
+            </header>
+
+            <!-- Filters Section -->
+            <div class="filters-section">
+                <div class="date-range">
+                    <input type="date" id="startDate">
+                    <span>to</span>
+                    <input type="date" id="endDate">
+                </div>
+                <div class="filter-options">
+                    <select id="typeFilter">
+                        <option value="all">All Types</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="food">Food</option>
+                        <option value="transport">Transport</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Transactions Table -->
+            <div class="transactions-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsBody">
+                        <!-- Sample Transaction Row -->
+                        <tr>
+                            <td>2024-03-20</td>
+                            <td>Grocery Shopping</td>
+                            <td><span class="category shopping">Shopping</td>
+                            <td class="amount expense">-$85.20</td>
+                            <td><span class="type expense">Expense</span></td>
+                            <td>
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Transaction Modal -->
+            <div id="transactionModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Add New Transaction</h2>
+                    <form id="transactionForm">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input type="text" placeholder="Enter description" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <input type="number" placeholder="Enter amount" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select required>
+                                <option value="shopping">Shopping</option>
+                                <option value="food">Food</option>
+                                <option value="transport">Transport</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select required>
+                                <option value="expense">Expense</option>
+                                <option value="income">Income</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-save">Save</button>
+                            <button type="button" class="btn-cancel">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/transactions.js"></script>
+    
+</body>
+</html>
