@@ -1,7 +1,7 @@
 # routes/auth.py
 from fastapi import APIRouter, HTTPException
-from database import supabase
-from models import User
+from backend.database import supabase
+from backend.models import User
 import bcrypt
 
 router = APIRouter()

@@ -1,7 +1,7 @@
 # routes/transactions.py
 from fastapi import APIRouter, HTTPException
-from database import supabase
-from models import Transaction
+from backend.database import supabase
+from backend.models import Transaction
 
 router = APIRouter()
 

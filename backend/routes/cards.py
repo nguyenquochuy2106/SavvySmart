@@ -1,7 +1,7 @@
 # routes/cards.py
 from fastapi import APIRouter, HTTPException
-from database import supabase
-from models import Card
+from backend.database import supabase
+from backend.models import Card
 
 router = APIRouter()
 
