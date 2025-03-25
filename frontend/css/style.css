@@ -1,16 +1,112 @@
+/* Import font Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
 * {
-font-family: 'sans-serif', 'helvetica';
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.container {
-    height:100vh;
+body {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    border-radius: 5px;
+    background: linear-gradient(135deg, #00d4ff, #00b894);
 }
-.container #login-form{
+
+.container {
+    width: 350px;
+    padding: 20px;
+    background: rgba(128, 128, 128, 0.5); /* Gray 0.5 transparent */
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 28px;
+    /*background: linear-gradient(135deg, #00d4ff, #00b894);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;*/
+    margin-bottom: 15px;
+    color:white
+}
+
+
+form {
+    display: flex;
     flex-direction: column;
-    padding: 1rem;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background: #00d4ff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+button[type="submit"]:hover {
+    background: #00abcd;
+}
+
+/* Remember Me Checkbox - Hiển thị cùng dòng */
+.remember-me {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.remember-me label {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Tạo khoảng cách giữa checkbox và chữ */
+}
+
+.remember-me input {
+    width: 16px;
+    height: 16px;
+}
+
+
+a {
+    color: white;
+    font-size: 14px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Register link */
+span {
+    color: white;
+    font-size: 14px;
+}
+
+.register-link {
+    font-weight: bold;
+    color: #FFD700;
 }
