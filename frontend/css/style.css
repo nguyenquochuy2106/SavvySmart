@@ -1,0 +1,16 @@
+* {
+font-family: 'sans-serif', 'helvetica';
+}
+
+.container {
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 5px;
+}
+.container #login-form{
+    flex-direction: column;
+    padding: 1rem;
+}
