@@ -33,6 +33,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Set dashboard as active by default
+    const dashboardItem = document.querySelector('[data-page="dashboard"]');
+    if (dashboardItem) {
+        dashboardItem.classList.add('active');
+    }
+
+    // Khôi phục trạng thái active từ localStorage
+    const activePage = localStorage.getItem('activePage') || 'dashboard';
+    const activeItem = document.querySelector(`[data-page="${activePage}"]`);
+    if (activeItem) {
+        activeItem.classList.add('active');
+    }
+
     // Xử lý toggle sidebar (gộp 2 phần xử lý toggle thành 1)
     const sidebarToggle = document.querySelector('.sidebar-toggle');
     const sidebar = document.querySelector('.sidebar');

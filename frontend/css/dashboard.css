@@ -117,6 +117,7 @@ body {
     cursor: pointer;
     white-space: nowrap;
     color: #fff;
+    transition: all 0.3s ease;
 }
 
 .nav-links li i {
@@ -127,6 +128,15 @@ body {
 
 .nav-links li .link-text {
     transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-links li.active {
+    background: #e74c3c;  /* Màu đỏ khi active */
+    box-shadow: 0 2px 5px rgba(231, 76, 60, 0.2);
+}
+
+.nav-links li:hover {
+    background: rgba(231, 76, 60, 0.8);  /* Màu đỏ nhạt khi hover */
 }
 
 /* Collapsed state - cập nhật lại các thuộc tính này */
@@ -150,6 +160,66 @@ body {
 
 .sidebar.collapsed .nav-links li i {
     margin: 0;
+}
+
+/* Bottom buttons styles */
+.sidebar-bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.sidebar-bottom button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sidebar-bottom button i {
+    min-width: 20px;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.sidebar-bottom button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.account-btn {
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; */
+}
+
+.logout-btn {
+    color: white !important;
+    font-size: 18px;
+}
+
+/* Cập nhật cho trạng thái collapsed */
+.sidebar.collapsed .sidebar-bottom {
+    padding: 0 10px;
+}
+
+.sidebar.collapsed .sidebar-bottom button {
+    padding: 12px 0;
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-bottom button i {
+    margin: 0;
+}
+
+.sidebar.collapsed .sidebar-bottom .link-text {
+    display: none;
 }
 
 /* Main Content - cập nhật margin và width */
@@ -317,4 +387,15 @@ header {
    overflow: hidden;
 }
 
+.account-btn{
+    color: white !important;
+    font-size: 18px;
+}
 
+.logout-btn{
+    color: red !important;
+}
+
+.sidebar-bottom button{
+    border-bottom: 2px white solid;
+}
