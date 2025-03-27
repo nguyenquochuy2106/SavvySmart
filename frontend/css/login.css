@@ -1,10 +1,10 @@
 :root {
-            --primary-color: #00b894;
+            --primary-color: linear-gradient(135deg, #6a0dad, #ff4e50, #ffcc00);
             --secondary-color: #00d4ff;
-            --text-color: #2d3436;
+            --text-color: #6a0dad;
             --gray-color: #b2bec3;
             --error-color: #ff7675;
-            --success-color: #00b894;
+            --success-color: #6a0dad;
         }
 
         * {
@@ -15,7 +15,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #00ff2e, #00d4ff);
+            background: linear-gradient(135deg, #6a0dad, #ff4e50, #ffcc00);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -40,13 +40,16 @@
         }
 
         h2 span {
-            font-weight: normal;
+            font-weight: bold;
+            background: linear-gradient(358deg, red, yellow,purple);
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
         h2 b {
-            background: linear-gradient(90deg, #00ff2e, #00d4ff);
+            /* background: linear-gradient(358deg, red, yellow,purple);
             -webkit-background-clip: text;
-            color: transparent;
+            color: transparent; */
         }
 
         .subtitle {
@@ -123,7 +126,7 @@
         }
 
         .btn-primary:hover {
-            background: #00a383;
+            background: linear-gradient(369deg, #6a0dad, #ff4e50, #ffcc00);
         }
 
         .divider {
@@ -236,7 +239,7 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #00ff2e, #00d4ff);
+            background: linear-gradient(135deg, #6a0dad, #ff4e50, #ffcc00);
             border: none;
             color: white;
             cursor: pointer;
@@ -248,7 +251,7 @@
         }
 
         .btn-face-id:hover {
-            background: #00a382;
+            background: linear-gradient(369deg, #6a0dad, #ff4e50, #ffcc00);
             transform: scale(1.05);
             box-shadow: 0 4px 8px rgba(0, 184, 148, 0.3);
         }
@@ -268,7 +271,7 @@
             height: 180px;
             border-radius: 50%;
             overflow: hidden;
-            border: 3px solid #00b894;
+            border: 3px solid #6a0dad !important;
         }
 
         .default-avatar {
@@ -295,7 +298,7 @@
         }
 
         .terms a {
-            color: #00b894;
+            color: #6a0dad;
             text-decoration: none;
         }
 
@@ -310,7 +313,7 @@
         }
 
         .switch-form a {
-            color: #00b894;
+            color: #6a0dad;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
