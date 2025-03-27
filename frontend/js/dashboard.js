@@ -32,6 +32,49 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Xử lý toggle sidebar (gộp 2 phần xử lý toggle thành 1)
+    const sidebarToggle = document.querySelector('.sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    const linkTexts = document.querySelectorAll('.link-text');
+
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+            // Toggle classes
+            sidebar.classList.toggle('collapsed');
+            mainContent.classList.toggle('expanded');
+            
+            // Xử lý hiển thị text
+            if (sidebar.classList.contains('collapsed')) {
+                linkTexts.forEach(text => {
+                    text.style.opacity = '0';
+                    text.style.visibility = 'hidden';
+                });
+            } else {
+                setTimeout(() => {
+                    linkTexts.forEach(text => {
+                        text.style.opacity = '1';
+                        text.style.visibility = 'visible';
+                    });
+                }, 100);
+            }
+
+            // Lưu trạng thái vào localStorage
+            localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed'));
+        });
+    }
+
+    // Khôi phục trạng thái sidebar từ localStorage
+    const sidebarCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+    if (sidebarCollapsed) {
+        sidebar.classList.add('collapsed');
+        mainContent.classList.add('expanded');
+        linkTexts.forEach(text => {
+            text.style.opacity = '0';
+            text.style.visibility = 'hidden';
+        });
+    }
 });
 
 // Tách hàm khởi tạo biểu đồ

@@ -1,4 +1,3 @@
-
 :root {
     --primary-color: #2c3e50;
     --secondary-color: #3498db;
@@ -25,51 +24,146 @@ body {
     min-height: 100vh;
 }
 
-/* Sidebar Styles */
+/* Sidebar Styles - điều chỉnh các thuộc tính này */
 .sidebar {
-    width: var(--sidebar-width);
-    /* background: var(--primary-color); */
-    background: linear-gradient(90deg, #00ff2e, #00d4ff);
-    color: #000;
-    padding: 20px;
-    position: fixed;
+    width: 250px;
     height: 100vh;
-    font-weight: bold;
-    font-size: 18px;
+    background: linear-gradient(135deg, #6a0dad, #ff4e50, #ffcc00);
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 20px;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.sidebar-header {
+    position: relative;
+    margin-bottom: 30px;
 }
 
 .logo {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 20px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    overflow: hidden;
+}
+
+.logo img {
+    min-width: 40px;
+}
+
+.logo h2 {
+    font-size: 20px;
+    white-space: nowrap;
+    margin: 0;
+
+    background: linear-gradient(358deg, red, yellow,purple);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Update sidebar-toggle styles */
+.sidebar-toggle {
+    cursor: pointer;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    border-radius: 50%;
+    width: 30px;            /* Tăng kích thước từ 24px lên 30px */
+    height: 30px;           /* Tăng kích thước từ 24px lên 30px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);  /* Tăng shadow */
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.sidebar-toggle i {
+    font-size: 16px;        /* Tăng kích thước icon */
+    color: #2c3e50;         /* Màu icon */
+    transition: transform 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+    background: #f8f9fa;
+    width: 32px;            /* Hiệu ứng hover to hơn */
+    height: 32px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+.sidebar.collapsed .sidebar-toggle i {
+    transform: rotate(180deg);  /* Xoay icon khi sidebar thu gọn */
 }
 
 .nav-links {
     list-style: none;
-    margin-top: 30px;
+    padding: 0;
+    margin: 0;
 }
 
 .nav-links li {
-    padding: 15px;
-    cursor: pointer;
+    border-bottom: 2px #fff solid;
+    font-size: 18px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: all 0.3s;
+    padding: 12px 15px;
+    margin: 5px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    color: #fff;
 }
 
-.nav-links li:hover {
-    background: rgba(255,255,255,0.1);
-    border-radius: 5px;
+.nav-links li i {
+    min-width: 20px;
+    margin-right: 10px;
+    text-align: center;
 }
 
-/* Main Content Styles */
+.nav-links li .link-text {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Collapsed state - cập nhật lại các thuộc tính này */
+.sidebar.collapsed {
+    width: 70px;
+    padding: 20px 10px;
+}
+
+.sidebar.collapsed .logo h2 {
+    display: none;
+}
+
+.sidebar.collapsed .link-text {
+    display: none;
+}
+
+.sidebar.collapsed .nav-links li {
+    padding: 12px 0;
+    justify-content: center;
+}
+
+.sidebar.collapsed .nav-links li i {
+    margin: 0;
+}
+
+/* Main Content - cập nhật margin và width */
 .main-content {
-    margin-left: var(--sidebar-width);
+    margin-left: 250px;
     flex: 1;
     padding: 20px;
+    transition: margin-left 0.3s ease;
+    width: calc(100% - 250px);
+}
+
+.main-content.expanded {
+    margin-left: 70px;
+    width: calc(100% - 70px);
 }
 
 header {
@@ -169,3 +263,58 @@ header {
 .trend.negative {
     color: #e74c3c;
 }
+
+.white-text{
+    /* background: linear-gradient(135deg, rgb(106, 13, 173), rgb(255, 78, 80), rgb(255, 204, 0));
+    -webkit-background-clip: text;
+    color: transparent; */
+}
+
+
+/* tao nen cho the income */
+.income{
+     /* Gradient nền chính */
+     background: linear-gradient(135deg, #3b2a75, #5e4ba9);
+    
+     /* Hiệu ứng đổ bóng */
+     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+
+     height: 200px;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.expenses{
+    background: linear-gradient(135deg, #6D0DAD, #8422B8);
+    
+    /* Hiệu ứng đổ bóng */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+
+    height: 200px;
+   border-radius: 20px;
+   padding: 20px;
+   color: white;
+   font-family: Arial, sans-serif;
+   position: relative;
+   overflow: hidden;
+}
+.savings{
+    background: linear-gradient(135deg, #FF6A3D, #FFA900);
+    
+    /* Hiệu ứng đổ bóng */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+
+    height: 200px;
+   border-radius: 20px;
+   padding: 20px;
+   color: white;
+   font-family: Arial, sans-serif;
+   position: relative;
+   overflow: hidden;
+}
+
+

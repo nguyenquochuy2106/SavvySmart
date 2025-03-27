@@ -13,16 +13,36 @@
     <div class="dashboard-container">
         <!-- Sidebar -->
         <nav class="sidebar">
-            <div class="logo">
-                <img src="../img/wallet.png" alt="SavvySave" width="50" height="50">
-                <h2>Savvy</h2><h2 style="color:#ffffff">Save</h2>
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../img/wallet.png" alt="SavvySave" width="40" height="40">
+                    <h2><span>Savvy</span><span class="white-text">Save</span></h2>
+                </div>
+                <div class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
             <ul class="nav-links">
-                <li data-page="dashboard" class="active"><i class="fas fa-home" ></i> Dashboard</li>
-                <li data-page="transactions"><i class="fas fa-exchange-alt"></i> Transactions</li>
-                <li data-page="analytics"><i class="fas fa-chart-pie"></i> Analytics</li>
-                <li data-page="budget"><i class="fas fa-wallet"></i> Budget</li>
-                <li data-page="settings"><i class="fas fa-cog"></i> Settings</li>
+                <li data-page="dashboard" class="active">
+                    <i class="fas fa-home"></i>
+                    <span class="link-text">Dashboard</span>
+                </li>
+                <li data-page="transactions">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span class="link-text">Transactions</span>
+                </li>
+                <li data-page="analytics">
+                    <i class="fas fa-chart-pie"></i>
+                    <span class="link-text">Analytics</span>
+                </li>
+                <li data-page="budget">
+                    <i class="fas fa-wallet"></i>
+                    <span class="link-text">Budget</span>
+                </li>
+                <li data-page="settings">
+                    <i class="fas fa-cog"></i>
+                    <span class="link-text">Settings</span>
+                </li>
             </ul>
         </nav>
 
