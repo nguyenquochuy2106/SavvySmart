@@ -3,92 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SavvySave - Dashboard</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/app.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Dashboard - SavvySave</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .sidebar { height: 100vh; background-color: #343a40; color: white; padding: 20px; }
+        .card-custom { min-height: 100px; }
+        .chart-container { width: 100%; height: 300px; }
+    </style>
+    <script src="app.js"></script>
 </head>
-
 <body>
-    <div class="dashboard-container">
+    <div class="d-flex">
         <!-- Sidebar -->
-        <nav class="sidebar">
-            <div class="logo">
-                <img src="../img/wallet.png" alt="SavvySave" width="50" height="50">
-                <h2>Savvy</h2><h2 style="color:#ffffff">Save</h2>
-            </div>
-            <ul class="nav-links">
-                <li data-page="dashboard" class="active"><i class="fas fa-home" ></i> Dashboard</li>
-                <li data-page="transactions"><i class="fas fa-exchange-alt"></i> Transactions</li>
-                <li data-page="analytics"><i class="fas fa-chart-pie"></i> Analytics</li>
-                <li data-page="budget"><i class="fas fa-wallet"></i> Budget</li>
-                <li data-page="settings"><i class="fas fa-cog"></i> Settings</li>
+        <div class="sidebar">
+            <h4>SavvySave</h4>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a class="nav-link text-white" href="dashboard.html">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="transactions.html">Transactions</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="profile.html">Profile</a></li>
             </ul>
-        </nav>
+        </div>
 
         <!-- Main Content -->
-        <main class="main-content">
-            <!-- Header -->
-            <header>
-                <div class="search-bar">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search...">
-                </div>
-                <div class="user-info">
-                    <i class="fas fa-bell"></i>
-                    <img src="../img/ronaldo_icon.jpg" alt="User Avatar" class="avatar">
-                    <span>Ronaldo</span>
-                </div>
-            </header>
+        <div class="container mt-4">
+            <h2>Dashboard</h2>
 
-            <!-- Dashboard Content -->
-            <div class="dashboard-grid">
-                <!-- Summary Cards -->
-                <div class="card income">
-                    <h3>Total Income</h3>
-                    <p class="amount">$5,240</p>
-                    <span class="trend positive">+12.5%</span>
-                </div>
-                <div class="card expenses">
-                    <h3>Total Expenses</h3>
-                    <p class="amount">$3,120</p>
-                    <span class="trend negative">-5.2%</span>
-                </div>
-                <div class="card savings">
-                    <h3>Total Savings</h3>
-                    <p class="amount">$2,120</p>
-                    <span class="trend positive">+8.3%</span>
-                </div>
+            <!-- Filter -->
+            <div class="d-flex gap-3 mb-3">
+                <select class="form-select w-auto" id="filterMonth">
+                    <option value="">Select Month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                </select>
+                <select class="form-select w-auto" id="filterYear">
+                    <option value="">Select Year</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                </select>
+                <button class="btn btn-primary" onclick="applyFilter()">Filter</button>
+            </div>
 
-                <!-- Charts -->
-                <div class="card chart-card">
-                    <h3>Monthly Overview</h3>
-                    <canvas id="monthlyChart"></canvas>
+            <!-- Cards -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-custom p-3">
+                        <h5>Card 1</h5>
+                        <p>Balance: $5000</p>
+                    </div>
                 </div>
-
-                <!-- Recent Transactions -->
-                <div class="card transactions">
-                    <h3>Recent Transactions</h3>
-                    <div class="transaction-list">
-                        <div class="transaction-item">
-                            <div class="transaction-icon shopping">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-                            <div class="transaction-info">
-                                <h4>Shopping</h4>
-                                <p>Grocery Store</p>
-                            </div>
-                            <div class="transaction-amount negative">
-                                -$85.20
-                            </div>
-                        </div>
-                        <!-- Add more transaction items -->
+                <div class="col-md-6">
+                    <div class="card card-custom p-3">
+                        <h5>Card 2</h5>
+                        <p>Balance: $3000</p>
                     </div>
                 </div>
             </div>
-        </main>
+
+            <!-- Charts -->
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <canvas id="lineChart" class="chart-container"></canvas>
+                </div>
+                <div class="col-md-6">
+                    <canvas id="pieChart" class="chart-container"></canvas>
+                </div>
+            </div>
+
+            <!-- Transactions Table -->
+            <h4 class="mt-4">Transactions</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Card ID</th>
+                        <th>Transaction Type</th>
+                        <th>Created At</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1234</td>
+                        <td>Income</td>
+                        <td>2025-03-28</td>
+                        <td>$200</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <script src="../js/dashboard.js"></script>
+
 </body>
 </html>
