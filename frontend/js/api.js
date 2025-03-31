@@ -8,51 +8,61 @@ async function registerUser(username, email, password) {
             body: JSON.stringify({ username, email, password })
         });
 
-        // Kiểm tra phản hồi từ API
         const data = await response.json();
 
         if (!response.ok) {
             console.error("API Error:", data);
             throw new Error(data.detail || "Registration failed");
         }
+        
         console.log("User registered successfully:", data);
         alert("Registration successful!");
-        // ✅ Điều hướng sang trang login sau khi đăng ký thành công
-        window.location.href = "/login";
+        
+        console.log("Before redirect:", window.location);
+        
+        // ✅ Ensure window.location is not overridden
+        if (typeof window.location !== "object") {
+            console.warn("window.location was modified! Resetting...");
+            window.location = new URL(window.location.href);
+        }
+
+        // ✅ Redirect to login page (multiple methods)
+        setTimeout(() => {
+            try {
+                window.location.href = "C:/Users/GIANG_HUY/Desktop/GitHub/SavvySmart/frontend/pages/login.html";
+            } catch (e) {
+                console.warn("Redirect failed with href. Trying assign.", e);
+                window.location.assign("C:/Users/GIANG_HUY/Desktop/GitHub/SavvySmart/frontend/pages/login.html");
+            }
+        }, 500);
     } catch (error) {
         console.error("Fetch error:", error);
         alert(`Error: ${error.message}`);
     }
 }
 
-
-async function loginUser(username, password) {
+async function loginUser(emailOrUsername, password) {
     try {
         const response = await fetch(`${API_BASE_URL}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ email_or_username: emailOrUsername, password }) // ✅ Gửi email hoặc username
         });
 
-        // Kiểm tra phản hồi từ API
         const data = await response.json();
 
-        if(!response.ok) {
-            console.error("API Error:", data);
+        if (!response.ok) {
             throw new Error(data.detail || "Login failed");
         }
-        console.log("User logged in successfully:", data);
+
         alert("Login successful!");
+        window.location.href = "dashboard.html";  // ✅ Redirect sau khi đăng nhập thành công
     } catch (error) {
-        console.error("Fetch error:", error);
         alert(`Error: ${error.message}`);
     }
-} 
+}
 
-
-
-
-// ✅ Gọi hàm này khi submit form
+// ✅ Handle register form submission
 document.addEventListener("DOMContentLoaded", function () {
     const registerForm = document.getElementById("register-form");
 
@@ -68,12 +78,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// ✅ Gọi hàm này khi login form
+// ✅ Handle login form submission
 document.addEventListener("DOMContentLoaded", function () {
-    const registerForm = document.getElementById("login-form");
+    const loginForm = document.getElementById("login-form");
 
-    if (registerForm) {
-        registerForm.addEventListener("submit", async function (event) {
+    if (loginForm) {
+        loginForm.addEventListener("submit", async function (event) {
             event.preventDefault();
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;

@@ -98,7 +98,10 @@ async def register(user: User):
 # ✅ API - Login User
 @router.post("/login")
 async def login(user: User):
-    # Kiểm tra email và mật khẩu
-    user_in_db = user_service.get_user_by_email(user.email)
+    # Tìm user theo email hoặc username
+    user_in_db = user_service.get_user_by_email_or_username(user.email_or_username)
+    
     if not user_in_db or not bcrypt.checkpw(user.password.encode(), user_in_db["password"].encode()):
-        raise HTTPException(status_code=400, detail="Invalid email or password")
+        raise HTTPException(status_code=400, detail="Invalid credentials")
+    
+    return {"message": "Login successful"}
