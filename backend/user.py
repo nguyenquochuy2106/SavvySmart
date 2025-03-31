@@ -75,6 +75,11 @@ class UserService:
 
         return True  # Trả về True nếu đăng ký thành công
 
+    def get_user_by_email_or_username(email_or_username: str):
+        user = db.users.find_one({"email": email_or_username})  # Tìm theo email
+        if not user:
+            user = db.users.find_one({"username": email_or_username})  # Nếu không có, tìm theo username
+        return user
 
 
 
